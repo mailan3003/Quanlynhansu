@@ -25,6 +25,15 @@ class Nhansu_model extends CI_Model {
 		return $dulieu;
 	}
 
+	public function getDataByID($idnhanve){
+		//lay id tu csdl ve de sua
+		$this->db->select('*');
+		$this->db->where('id', $idnhanve);
+		$dulieu = $this->db->get('nhan_vien');
+		$dulieu = $dulieu ->result_array();//lay ve du lieu dang mang
+		return $dulieu;
+	}
+
 }
 
 /* End of file Nhansu_model.php */

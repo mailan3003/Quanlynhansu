@@ -32,14 +32,25 @@
  						<p class="card-text diachi">Dia chi: <?= $value['diachi']  ?> </p>
  						<p class="card-text sodonhang">So don da hoan thanh: <?= $value['sodonhang']  ?> </p>
  						<p class="card-text fb"><a href="<?= $value['linkfb']  ?>" title="" class="btn btn-info">Facebook <i class="fa fa-chevron-right"></i></a></p>
- 						<p class="card-text"><small class="text-muted">last</small></p>
+ 						
+ 						<p class="card-text edit"><a href="<?php echo base_url() ?>index.php/nhansu/nhansu_edit/<?= $value['id']  ?>" title="" class="btn btn-warning">Edit Infomation <i class="fa fa-pencil"></i></a></p>
+
+						<p class="card-text delete"><a href="<?php echo base_url() ?>index.php/nhansu/nhansu_delete/<?= $value['id']  ?>" title="" class="btn btn-danger">Delete Infomation <i class="fa fa-times"></i></a></p>
  					</div>
+
+
+
  				</div><!-- end card -->
  					<?php endforeach ?>
 
 
  				</div><!-- end card-columns -->
+ 			
+
  			</div>
+</div>
+
+
 
  			<div class="container">
  		<div class="text-xs-center">
@@ -116,7 +127,7 @@
  						</div>
  					</div>
 
- 					</div>
+ 		
 
  					<div class="form-group row text-xs-center">
  						<div class="col-sm-offset-2 col-sm-10">
@@ -124,6 +135,8 @@
  							<button type="reset" class="btn btn-outline-primary"> Nhap lai</button>
  						</div>
  					</div>
+
+
  				</form>
  			<!--</div> end row-->
  		</div>
