@@ -97,9 +97,7 @@ class Nhansu extends CI_Controller {
 		$this->load->view('editNhansu_view', $ketqua, FALSE);
 	}
 
-	public function nhansu_delete(){
-
-	}
+	
 
 	public function nhansu_update(){
 		//lay du lieu tu cai view
@@ -169,11 +167,50 @@ class Nhansu extends CI_Controller {
 			
 		}
 
-		
+		//het cau lenh, anh da xu ly xong
+
+		//goi luon model va trong view de xu ly luon du lieu nhan duoc
+
+		$this->load->model('Nhansu_model');
+		if ( $this->Nhansu_model->updateByID($id, $ten, $tuoi, $diachi, $avatar, $sdt, $sodonhang, $linkfb ) ){
+			$this->load->view('insertThanhcong_view');
+		}else{
+			echo "Khong thanh cong!";
+		}
 		
 	}
 
 
+	public function nhansu_delete($id){
+		$this->load->model('Nhansu_model');
+		if($this->Nhansu_model->deleteDataByID($id)){
+			$this->load->view('deleteThanhcong_view');
+		}else{
+			echo "Delete khong thanh con";
+		}
+	}
+
+	public function ajax_add(){
+		$ten = $this->input->post('ten');
+		$diachi = $this->input->post('diachi');
+		$tuoi = $this->input->post('tuoi');
+		$sodonhang = $this->input->post('sodonhang');
+		$linkfb = $this->input->post('linkfb');
+		$sdt = $this->input->post('sdt');
+		//$avatar =  base_url()."FileUpload/".basename($_FILES["avatar"]["name"]);
+		$avatar =  "https://i.ytimg.com/vi/tAaUbRt6jqM/maxresdefault.jpg";
+
+
+		//goi model
+		$this->load->model('Nhansu_model');
+		$trangthai = $this->Nhansu_model->insertDataToMySQL($ten, $tuoi, $diachi, $avatar, $sdt, $sodonhang, $linkfb);
+		if($trangthai){
+			echo "insert thanh cong" ;
+			//$this->load->view('insertThanhcong_view');
+		}else{
+			echo "insert that bai";
+		}
+	}
 
 }
 

@@ -10,6 +10,7 @@
  	<link rel="stylesheet" href="<?php echo base_url() ?>1.css">
 </head>
 <body >
+
  	<div class="container">
  		<div class="text-xs-center">
  			<h3 class="display-3">Danh sach nhan  su</h3>
@@ -21,8 +22,10 @@
 
  			<div class="card-columns">
 				
-				<?php foreach ($mangketqua as $key => $value): ?> 
+					<div class="card-deck-wrapper">
+					<div class="card-block">
 
+				<?php foreach ($mangketqua as $key => $value): ?> 
  				<div class="card">
  					<img class="card-img-top img-fluid" src="<?= $value['avatar']  ?>" alt="Card image cap ">
  					<div class="card-block">
@@ -41,9 +44,11 @@
 
 
  				</div><!-- end card -->
+ 			
  					<?php endforeach ?>
 
-
+			</div>
+ 			</div>
  				</div><!-- end card-columns -->
  			
 
@@ -59,7 +64,7 @@
  		</div>
  	</div>
  			<!--<div class="row">-->
- 				<form action="<?php echo base_url() ?>index.php/nhansu/nhansu_add" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+ 				<!-- <form action="<?php// echo base_url() ?>index.php/nhansu/nhansu_add" method="post" accept-charset="utf-8" enctype="multipart/form-data"> -->
  					<div class="form-group row">
  						<label for="anh" class="col-sm-4 form-control-label text-xs-right" >
  							Avatar
@@ -131,14 +136,71 @@
 
  					<div class="form-group row text-xs-center">
  						<div class="col-sm-offset-2 col-sm-10">
- 							<button type="submit" class="btn btn-outline-success"> Them moi</button>
+ 							<button type="button" class="btn btn-outline-success nutxulyajax"> Them moi</button>
  							<button type="reset" class="btn btn-outline-primary"> Nhap lai</button>
  						</div>
  					</div>
 
 
- 				</form>
+ 				<!-- </form> -->
  			<!--</div> end row-->
  		</div>
+ 		<script >
+ 			$('.nutxulyajax').click(function(event){
+
+ 				$.ajax({
+ 				url: 'ajax_add',
+ 				type: 'POST',
+ 				dataType: 'json',
+ 				data: {
+ 					ten: $('#ten').val(),
+ 					tuoi: $('#tuoi').val(),
+ 					diachi: $('#diachi').val(),
+ 					//avatar: $('#avatar').val(),
+ 					sdt: $('#sdt').val(),
+ 					sodonhang: $('#sodonhang').val(),
+ 					linkfb: $('#linkfb').val()
+ 				},
+ 			})
+ 			.done(function() {
+ 				console.log("success");
+ 				;
+ 				//them noi dung bang ham append
+ 			})
+ 			.fail(function() {
+ 				console.log("error");
+ 			})
+ 			.always(function() {
+ 				console.log("complete");
+ 				noidung = '<div class="card">';
+ 				noidung += '<img class="card-img-top img-fluid" src="http://kenh14cdn.com/2019/10/3/anh-chup-man-hinh-2019-10-03-luc-101059-157007241872916488296.png" alt="Card image cap ">';
+ 				noidung += '<div class="card-block">';	
+ 				noidung += '<h4 class="card-title ten">Ho va ten:' + $('#ten').val() + '</h4>';	
+ 				noidung += '<p class="card-text tuoi">Tuoi:'+ $('#tuoi').val()+' </p>';		
+ 				noidung += '<p class="card-text sdt">So dien thoai: '+ $('#sdt').val()+' </p>';	
+ 				noidung +='<p class="card-text diachi">Dia chi: '+$('#diachi').val()+'</p>';	
+ 				noidung += '<p class="card-text sodonhang">So don da hoan thanh: '+ $('#sodonhang').val()+' </p>';	
+ 				noidung += '<p class="card-text fb"><a href="'+ $('#linkfb').val()+'" title="" class="btn btn-info">Facebook <i class="fa fa-chevron-right"></i></a></p>';	
+ 				noidung += '<p class="card-text edit"><a href="<?php echo base_url() ?>index.php/nhansu/nhansu_edit/<?= $value['id']  ?>" title="" class="btn btn-warning">Edit Infomation <i class="fa fa-pencil"></i></a></p>';	
+ 				noidung += '<p class="card-text delete"><a href="<?php echo base_url() ?>index.php/nhansu/nhansu_delete/<?= $value['id']  ?>" title="" class="btn btn-danger">Delete Infomation <i class="fa fa-times"></i></a></p>';			
+ 					
+ 				noidung += '</p>';
+ 				noidung += '</div>';
+ 				noidung += '</div>';	
+ 				noidung += '</div>';		
+						
+ 				$('.card-deck-wrapper').append(noidung);
+ 				$('#ten').val('');
+ 				$('#tuoi').val('');
+ 				$('#diachi').val('');
+ 				$('#sdt').val('');
+ 				$('#sodonhang').val('');
+ 				$('#linkfb').val('');
+ 			});
+ 			
+
+ 			});
+ 			
+ 		</script>
 </body>
 </html>

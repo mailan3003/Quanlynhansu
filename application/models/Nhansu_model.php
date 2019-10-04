@@ -20,6 +20,7 @@ class Nhansu_model extends CI_Model {
 	//lay du lieu tu sql ve
 	public function getAllData(){
 		$this->db->select('*');
+		$this->db->order_by('id', 'asc');
 		$dulieu = $this->db->get('nhan_vien');
 		$dulieu = $dulieu ->result_array();
 		return $dulieu;
@@ -32,6 +33,30 @@ class Nhansu_model extends CI_Model {
 		$dulieu = $this->db->get('nhan_vien');
 		$dulieu = $dulieu ->result_array();//lay ve du lieu dang mang
 		return $dulieu;
+	}
+
+	public function updateByID($id, $ten, $tuoi, $diachi, $avatar, $sdt, $sodonhang, $linkfb ){
+		//dong goi toan bo du lieu thanh mot mang
+		$data  = array(
+			'id' => $id ,
+			'ten' => $ten,
+			'tuoi' => $tuoi,
+			'diachi' => $diachi ,
+			'avatar' => $avatar,
+			'sdt' => $sdt,
+			'sodonhang' => $sodonhang,
+			'linkfb' => $linkfb
+		);
+
+		$this->db->where('id', $id);
+		
+		return $this->db->update('nhan_vien', $data);
+	}
+
+	public function deleteDataByID($id){
+		$this->db->where('id', $id);
+		return $this->db->delete('nhan_vien');
+
 	}
 
 }
