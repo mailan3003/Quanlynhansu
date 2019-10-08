@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">  
 	<script type="text/javascript" src="<?php echo base_url() ?>vendor/bootstrap.js"></script>
  	<script type="text/javascript" src=" <?php echo base_url() ?>1.js"></script>
+ 	<script type="text/javascript" src=" <?php echo base_url() ?>jQuery-File-Upload-10.2.0/js/vendor/jquery.ui.widget.js"></script>
+ 	<script type="text/javascript" src=" <?php echo base_url() ?>jQuery-File-Upload-10.2.0/js/jquery.fileupload.js"></script>
 	<link rel="stylesheet" href="<?php echo base_url() ?>vendor/bootstrap.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>vendor/font-awesome.css">
  	<link rel="stylesheet" href="<?php echo base_url() ?>1.css">
@@ -70,7 +72,7 @@
  							Avatar
  						</label>
  						<div class="col-sm-8">
- 							<input name="avatar" class="form-control" type="file" id="avatar" placeholder="upload">
+ 							<input name="files[]" class="form-control" type="file" id="avatar" placeholder="upload">
  						</div>
  					</div>
 

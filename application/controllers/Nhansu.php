@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+include 'phpUploadHandler.php';
 class Nhansu extends CI_Controller {
 
 	public function __construct()
@@ -210,6 +212,10 @@ class Nhansu extends CI_Controller {
 		}else{
 			echo "insert that bai";
 		}
+	}
+
+	public function uploadFile(){
+		
 	}
 
 }
