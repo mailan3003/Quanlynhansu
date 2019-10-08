@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-include 'phpUploadHandler.php';
+include 'UploadHandler.php';
 class Nhansu extends CI_Controller {
 
 	public function __construct()
@@ -200,7 +200,7 @@ class Nhansu extends CI_Controller {
 		$linkfb = $this->input->post('linkfb');
 		$sdt = $this->input->post('sdt');
 		//$avatar =  base_url()."FileUpload/".basename($_FILES["avatar"]["name"]);
-		$avatar =  "https://i.ytimg.com/vi/tAaUbRt6jqM/maxresdefault.jpg";
+		$avatar =  $this->input->post('avatar');
 
 
 		//goi model
@@ -214,8 +214,9 @@ class Nhansu extends CI_Controller {
 		}
 	}
 
-	public function uploadFile(){
-		
+	public function uploadfile(){
+		$uploadfile = new UploadHandler;
+
 	}
 
 }

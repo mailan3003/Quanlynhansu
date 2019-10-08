@@ -148,6 +148,16 @@
  			<!--</div> end row-->
  		</div>
  		<script >
+ 			duongdan = '<?php echo base_url() ?>';
+ 			$('#avatar').fileupload({
+ 				dataType: 'json',
+ 				url: duongdan+'index.php/nhansu/uploadfile',
+ 				done: function(e, data){
+ 					$.each(data.result.files, function(index, file) {
+ 						tenfile = file.url;
+ 					});
+ 				}
+ 			})
  			$('.nutxulyajax').click(function(event){
 
  				$.ajax({
@@ -158,7 +168,7 @@
  					ten: $('#ten').val(),
  					tuoi: $('#tuoi').val(),
  					diachi: $('#diachi').val(),
- 					//avatar: $('#avatar').val(),
+ 					avatar: tenfile,
  					sdt: $('#sdt').val(),
  					sodonhang: $('#sodonhang').val(),
  					linkfb: $('#linkfb').val()
@@ -175,7 +185,7 @@
  			.always(function() {
  				console.log("complete");
  				noidung = '<div class="card">';
- 				noidung += '<img class="card-img-top img-fluid" src="http://kenh14cdn.com/2019/10/3/anh-chup-man-hinh-2019-10-03-luc-101059-157007241872916488296.png" alt="Card image cap ">';
+ 				noidung += '<img class="card-img-top img-fluid" src="'+tenfile+'" alt="Card image cap ">';
  				noidung += '<div class="card-block">';	
  				noidung += '<h4 class="card-title ten">Ho va ten:' + $('#ten').val() + '</h4>';	
  				noidung += '<p class="card-text tuoi">Tuoi:'+ $('#tuoi').val()+' </p>';		
